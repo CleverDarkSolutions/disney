@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {ReactNode} from 'react';
 import './App.css';
+import {Container, Grid} from '@mui/material';
+import Navbar from './components/navbar';
+import Typography from '@mui/material/Typography';
+import PopularCard from './components/card/popular-card';
+import SearchContainer from './components/search-container';
+
+function Item(props: { children: ReactNode }) {
+  return null;
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo}
-          className="App-logo"
-          alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container
+        maxWidth="lg"
+        sx={{
+          background: '#FFF8DC'
+        }}
+      >
+        <Navbar/>
+
+        <Typography variant="h2"
+          sx={{
+            paddingTop: 10
+          }}
+          gutterBottom>
+          Most popular Disney characters
+        </Typography>
+
+        <Grid container
+          spacing={2}>
+          <Grid item
+            xs={4}>
+            <PopularCard/>
+          </Grid>
+
+          <Grid item
+            xs={4}>
+            <PopularCard/>
+          </Grid>
+
+          <Grid item
+            xs={4}>
+            <PopularCard/>
+          </Grid>
+        </Grid>
+
+        <SearchContainer/>
+      </Container>
     </div>
   );
 }
