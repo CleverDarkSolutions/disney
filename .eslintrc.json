@@ -1,0 +1,51 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "react",
+        "jsx-a11y"
+    ],
+    "rules": {
+        "react/jsx-key": "off",
+        "tailwindcss/no-custom-classname": "off",
+        "no-console": "warn",
+        "no-unused-vars": "warn",
+        "indent": ["error",2],
+        "quotes": ["error", "single"],
+        "semi": "off",
+        "prefer-template": "error",
+        "react/jsx-props-no-multi-spaces": "error",
+        "react/jsx-curly-brace-presence": ["error", { "props": "never", "children": "never" }],
+        "react/jsx-curly-newline": ["error", { "multiline": "consistent", "singleline": "consistent" }],
+        "react/jsx-max-props-per-line": ["error", { "maximum": 1 }],
+        "react/jsx-wrap-multilines": ["error", { "declaration": "parens-new-line", "assignment": "parens-new-line", "return": "parens-new-line", "arrow": "parens-new-line", "condition": "parens-new-line", "logical": "parens-new-line", "prop": "parens-new-line" }],
+        "react/prop-types": "warn",
+        "react/jsx-fragments": ["error", "syntax"],
+        "react/jsx-boolean-value": ["error", "never"],
+        "react/jsx-indent": ["error", 2],
+        "no-multiple-empty-lines": ["error", { "max": 1 }]
+
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}
