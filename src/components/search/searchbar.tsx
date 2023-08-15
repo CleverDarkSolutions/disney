@@ -6,6 +6,9 @@ import SearchIcon from '@mui/icons-material/Search';
 const SearchBar = ({setSearchQuery}: any) => (
   <form>
     <TextField
+      sx={{
+        width: '400px',
+      }}
       id="search-bar"
       className="text"
       onInput={(e: any) => {

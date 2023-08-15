@@ -1,9 +1,9 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import {Container, Grid, Paper} from '@mui/material';
-import Image from './common/image';
+import Image from '../common/image';
 import Typography from '@mui/material/Typography';
-import SearchBar from './common/searchbar';
+import SearchBar from './searchbar';
 
 const SearchContainer = () => {
   return(
