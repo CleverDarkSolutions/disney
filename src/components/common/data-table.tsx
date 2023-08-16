@@ -1,57 +1,121 @@
 import * as React from 'react';
-import {DataGrid, GridColDef, GridRow, GridRowsProp, GridValueGetterParams} from '@mui/x-data-grid'
+import {
+  DataGrid,
+  GridCellParams,
+  GridColDef,
+  GridRow,
+  GridRowModel,
+  GridRowsProp, GridValidRowModel,
+  GridValueGetterParams
+} from '@mui/x-data-grid'
+import StarIcon from '@mui/icons-material/Star'
+import axios from 'axios';
+import Image from '../common/image'
+import {useEffect, useState} from 'react';
+
+interface Character {
+  _id: number;
+  films: string[];
+  shortFilms: string[];
+  tvShows: string[];
+  videoGames: string[];
+  parkAttractions: string[];
+  allies: string[];
+  enemies: string[];
+  sourceUrl: string;
+  name: string;
+  imageUrl: string;
+  createdAt: string;
+  updatedAt: string;
+  url: string;
+  __v: number;
+}
+
+interface CharacterFiltered {
+  id: number;
+  name: string;
+  films: number;
+  picture: string;
+}
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
   {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
+    field: 'image', // Image column
+    headerName: 'Image',
+    width: 130,
+    renderCell: (params) => (
+      <Image/>
+    ),
+  },
+  { field: 'name', headerName: 'Name', width: 350 },
+  {
+    field: 'films',
+    headerName: 'TV Shows Count',
+    width: 150,
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    field: 'favourite',
+    headerName: 'Favourite',
+    width: 150,
+    renderCell: (params) => (
+      <StarIcon/>
+    )
   },
-];
-
-const rows: GridRowsProp = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
 const DataTable = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [disneyData, setDisneyData] = useState<CharacterFiltered[]>();
+  useEffect(() => {
+    axios.get('https://api.disneyapi.dev/character')
+      .then(res => {
+        console.log(res.data)
+        if (Array.isArray(res.data.data)) {
+          const modifiedData: CharacterFiltered[] = [];
+
+          res.data.data.forEach((character: Character) => {
+            const randomNumber = Math.floor(Math.random() * 1000);
+            modifiedData.push({
+              id: randomNumber,
+              name: character.name,
+              films: character.films.length,
+              picture: character.imageUrl
+            });
+          });
+
+          setDisneyData(modifiedData);
+        } else {
+          console.error('API response is not an array:', res.data);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      })
+      .finally(() => {
+        setIsLoading(false); // Request completed, set isLoading to false
+      });
+  }, []);
   return (
     <div style={{ minHeight: 500, width: '100%' }}>
-      <DataGrid
-        style={{
-          border: 'none',
-          minHeight: 500,
-        }}
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+      {isLoading ? (<p>Loading...</p>) : (
+        <DataGrid
+          style={{
+            border: 'none',
+            minHeight: 500,
+          }}
+          rows={disneyData!}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+        />
+      )}
+      )
     </div>
   );
 }

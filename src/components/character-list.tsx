@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Grid, Paper, Typography} from '@mui/material';
 import DataTable from './common/data-table';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 const CharacterList = () => {
   return(
