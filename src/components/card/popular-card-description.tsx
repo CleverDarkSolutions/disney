@@ -7,6 +7,7 @@ const PopularCardDescription = (props: {films: number, tvShows: number}) => (
   <Box sx={{
     position: 'absolute',
     bottom: 20,
+    left: 20,
     width: '100%',
   }}>
     <Typography sx={{ textAlign: 'left' }}>

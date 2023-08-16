@@ -12,6 +12,9 @@ import StarIcon from '@mui/icons-material/Star'
 import axios from 'axios';
 import Image from '../common/image'
 import {useEffect, useState} from 'react';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
+import {LiveTv} from '@mui/icons-material';
+import TvTooltip from '../icons/tv-tooltip';
 
 export interface Character {
   _id: number;
@@ -35,6 +38,7 @@ interface CharacterFiltered {
   id: number;
   name: string;
   films: number;
+  tvShows: string[]
   picture: string;
 }
 
@@ -48,7 +52,19 @@ const columns: GridColDef[] = [
       <Image src={params.row.picture}/>
     ),
   },
-  { field: 'name', headerName: 'Name', width: 350 },
+  {
+    field: 'name',
+    headerName: 'Name',
+    width: 350,
+    renderCell: (params) => (
+      <div>
+        {params.row.name}
+        {params.row.tvShows.length > 0 && (
+          <TvTooltip title={params.row.tvShows.map( (title: string) => <p>{title}</p>)}/>
+        )}
+      </div>
+    )
+  },
   {
     field: 'films',
     headerName: 'Films Count',
@@ -75,12 +91,15 @@ const DataTable = () => {
 
           res.data.data.forEach((character: Character) => {
             const randomNumber = Math.floor(Math.random() * 1000);
-            modifiedData.push({
-              id: randomNumber,
-              name: character.name,
-              films: character.films.length,
-              picture: character.imageUrl
-            });
+            if(character.films.length > 0) {
+              modifiedData.push({
+                id: randomNumber,
+                name: character.name,
+                films: character.films.length,
+                picture: character.imageUrl,
+                tvShows: character.tvShows
+              });
+            }
           });
 
           setDisneyData(modifiedData);
