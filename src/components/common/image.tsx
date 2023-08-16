@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 
-const Image = (props: {width?: string, height?: string, rounded?: number}) => (
+const Image = (props: {width?: string, height?: string, rounded?: number, src?: string}) => (
   <Box
     component="img"
     sx={{
@@ -10,7 +10,7 @@ const Image = (props: {width?: string, height?: string, rounded?: number}) => (
     }}
     borderRadius={props.rounded || 0}
     alt="The house from the offer."
-    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+    src={props.src || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2'}
   />
 )
 

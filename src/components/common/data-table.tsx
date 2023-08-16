@@ -13,7 +13,7 @@ import axios from 'axios';
 import Image from '../common/image'
 import {useEffect, useState} from 'react';
 
-interface Character {
+export interface Character {
   _id: number;
   films: string[];
   shortFilms: string[];
@@ -45,13 +45,13 @@ const columns: GridColDef[] = [
     headerName: 'Image',
     width: 130,
     renderCell: (params) => (
-      <Image/>
+      <Image src={params.row.picture}/>
     ),
   },
   { field: 'name', headerName: 'Name', width: 350 },
   {
     field: 'films',
-    headerName: 'TV Shows Count',
+    headerName: 'Films Count',
     width: 150,
   },
   {
@@ -70,7 +70,6 @@ const DataTable = () => {
   useEffect(() => {
     axios.get('https://api.disneyapi.dev/character')
       .then(res => {
-        console.log(res.data)
         if (Array.isArray(res.data.data)) {
           const modifiedData: CharacterFiltered[] = [];
 
@@ -115,7 +114,6 @@ const DataTable = () => {
           checkboxSelection
         />
       )}
-      )
     </div>
   );
 }

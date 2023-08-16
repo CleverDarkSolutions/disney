@@ -6,10 +6,10 @@ import StarIcon from '@mui/icons-material/Star';
 import Image from '../common/image';
 import PopularCardDescription from './popular-card-description';
 
-const PopularCard = () => {
+const PopularCard = (props: {films: number, tvShows: number, image: string, name: string}) => {
   return(
-    <Card sx={{ minWidth: 200, minHeight: 300, padding: 2 }}>
-      <Image/>
+    <Card sx={{ minWidth: 200, minHeight: 200, height: 450, padding: 2, position: 'relative' }}>
+      <Image src={props.image}/>
       <CardContent>
         <Grid container
           spacing={2}>
@@ -19,7 +19,7 @@ const PopularCard = () => {
               color="text.primary"
               variant="h5"
               gutterBottom>
-              Word of the Day
+              {props.name}
             </Typography>
           </Grid>
           <Grid item
@@ -27,7 +27,9 @@ const PopularCard = () => {
             <StarIcon/>
           </Grid>
         </Grid>
-        <PopularCardDescription/>
+        <PopularCardDescription
+          films={props.films}
+          tvShows={props.tvShows}/>
       </CardContent>
     </Card>
   )

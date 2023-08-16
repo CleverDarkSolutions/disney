@@ -4,36 +4,12 @@ import Typography from '@mui/material/Typography';
 import PopularCard from '../components/card/popular-card';
 import SearchContainer from '../components/search/search-container';
 import CharacterList from '../components/character-list';
+import Popular from '../components/popular';
 
 const Home = () => {
   return(
     <div>
-      <Typography variant="h2"
-        sx={{
-          paddingTop: 10
-        }}
-        gutterBottom>
-        Most popular Disney characters
-      </Typography>
-
-      <Grid container
-        spacing={2}>
-        <Grid item
-          xs={4}>
-          <PopularCard/>
-        </Grid>
-
-        <Grid item
-          xs={4}>
-          <PopularCard/>
-        </Grid>
-
-        <Grid item
-          xs={4}>
-          <PopularCard/>
-        </Grid>
-      </Grid>
-
+      <Popular/>
       <SearchContainer/>
       <CharacterList/>
     </div>
