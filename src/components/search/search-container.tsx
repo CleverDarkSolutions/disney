@@ -11,7 +11,7 @@ const SearchContainer = () => {
       sx={{
         display: 'flex',
       }}
-      marginTop={30}
+      marginTop={3}
       minHeight={500}
       component={Paper}
       borderRadius={16}
@@ -28,7 +28,6 @@ const SearchContainer = () => {
           gutterBottom>
           The best animated Disney characters of all time
         </Typography>
-        <SearchBar/>
       </Container>
     </Box>
   )

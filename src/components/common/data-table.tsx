@@ -56,7 +56,7 @@ export const columns: GridColDef[] = [
   {
     field: 'name',
     headerName: 'Name',
-    width: 200,
+    width: 300,
     renderCell: (params) => (
       <div>
         {params.row.name}
@@ -69,7 +69,7 @@ export const columns: GridColDef[] = [
   {
     field: 'films',
     headerName: 'Films Count',
-    width: 50,
+    width: 100,
   },
   {
     field: 'favourite',
