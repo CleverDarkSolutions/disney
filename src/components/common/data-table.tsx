@@ -16,6 +16,7 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
 import {LiveTv} from '@mui/icons-material';
 import TvTooltip from '../icons/tv-tooltip';
 import Favourite from '../icons/favourite';
+import {useSelector} from 'react-redux';
 
 export interface Character {
   _id: number;
@@ -43,7 +44,7 @@ export interface CharacterFiltered {
   picture: string;
 }
 
-const columns: GridColDef[] = [
+export const columns: GridColDef[] = [
   {
     field: 'image', // Image column
     headerName: 'Image',
@@ -80,41 +81,38 @@ const columns: GridColDef[] = [
   },
 ];
 
-const DataTable = (props: {type: 'normal' | 'favourite', favourites?: CharacterFiltered[]}) => {
+const DataTable = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [disneyData, setDisneyData] = useState<CharacterFiltered[]>();
   useEffect(() => {
-    if(props.type === 'normal') { // checks which data to render
-      axios.get('https://api.disneyapi.dev/character')
-        .then(res => {
-          if (Array.isArray(res.data.data)) {
-            const modifiedData: CharacterFiltered[] = [];
+    axios.get('https://api.disneyapi.dev/character')
+      .then(res => {
+        if (Array.isArray(res.data.data)) {
+          const modifiedData: CharacterFiltered[] = [];
 
-            res.data.data.forEach((character: Character) => {
-              const randomNumber = Math.floor(Math.random() * 1000);
-              if (character.films.length > 0) {
-                modifiedData.push({
-                  id: randomNumber,
-                  name: character.name,
-                  films: character.films.length,
-                  picture: character.imageUrl,
-                  tvShows: character.tvShows
-                });
-              }
-            });
+          res.data.data.forEach((character: Character) => {
+            if (character.films.length > 0) {
+              modifiedData.push({
+                id: character._id,
+                name: character.name,
+                films: character.films.length,
+                picture: character.imageUrl,
+                tvShows: character.tvShows
+              });
+            }
+          });
 
-            setDisneyData(modifiedData);
-          } else {
-            console.error('API response is not an array:', res.data);
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        })
-        .finally(() => {
-          setIsLoading(false); // Request completed, set isLoading to false
-        });
-    }
+          setDisneyData(modifiedData);
+        } else {
+          console.error('API response is not an array:', res.data);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      })
+      .finally(() => {
+        setIsLoading(false); // Request completed, set isLoading to false
+      });
   }, []);
   return (
     <div style={{ minHeight: 500, width: '100%' }}>

@@ -1,0 +1,58 @@
+{
+  "favourites": [
+    {
+      "id": 450,
+      "films": 9,
+      "tvShows": [
+        "The Mouse Factory",
+        "TaleSpin",
+        "Raw Toonage",
+        "Aladdin (TV series)",
+        "Jungle Cubs",
+        "House of Mouse",
+        "DuckTales (2017 series)"
+      ],
+      "picture": "https://static.wikia.nocookie.net/disney/images/3/31/Profile_-_Baloo.jpeg",
+      "name": "Baloo"
+    },
+    {
+      "id": 70,
+      "name": "Achilles",
+      "films": 1,
+      "picture": "https://static.wikia.nocookie.net/disney/images/d/d3/Vlcsnap-2015-05-06-23h04m15s601.png",
+      "tvShows": [
+        "Hercules (TV series)"
+      ]
+    },
+    {
+      "id": 233,
+      "name": "Abigail the Cow",
+      "films": 2,
+      "picture": "https://static.wikia.nocookie.net/disney/images/0/05/Fox-disneyscreencaps_com-901.jpg",
+      "tvShows": []
+    },
+    {
+      "id": 431,
+      "name": "Achilles",
+      "films": 1,
+      "picture": "https://static.wikia.nocookie.net/disney/images/d/d3/Vlcsnap-2015-05-06-23h04m15s601.png",
+      "tvShows": [
+        "Hercules (TV series)"
+      ]
+    },
+    {
+      "id": 752,
+      "name": "Ambrose",
+      "films": 2,
+      "picture": "https://static.wikia.nocookie.net/disney/images/d/d3/Ambrose.jpg",
+      "tvShows": []
+    },
+    {
+      "id": 342,
+      "name": "Aspen",
+      "films": 1,
+      "picture": "https://static.wikia.nocookie.net/disney/images/8/8b/Bedtime_stories_aspen.jpg",
+      "tvShows": []
+    }
+  ]
+}
