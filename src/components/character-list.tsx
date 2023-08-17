@@ -1,15 +1,11 @@
 import React, {useState} from 'react'
 import {Grid, Paper, Typography} from '@mui/material';
-import DataTable from './common/data-table';
+import DataTable, {CharacterFiltered} from './common/data-table';
 import Box from '@mui/material/Box';
-import axios from 'axios';
 
-const CharacterList = () => {
+const CharacterList = (props: {favourites?: CharacterFiltered[]}) => {
   return(
     <Box
-      sx={{
-        display: 'flex',
-      }}
       marginTop={10}
       padding={3}
       minHeight={300}
@@ -28,7 +24,7 @@ const CharacterList = () => {
         <Grid item
           marginTop={5}
           xs={12}>
-          <DataTable/>
+          <DataTable type="normal"/>
         </Grid>
       </Grid>
     </Box>

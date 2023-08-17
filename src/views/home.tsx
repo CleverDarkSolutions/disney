@@ -11,7 +11,18 @@ const Home = () => {
     <div>
       <Popular/>
       <SearchContainer/>
-      <CharacterList/>
+      <Grid container
+        spacing={2}>
+        <Grid item
+          xs={6}>
+          <CharacterList/>
+        </Grid>
+
+        <Grid item
+          xs={6}>
+          <CharacterList/>
+        </Grid>
+      </Grid>
     </div>
   )
 }

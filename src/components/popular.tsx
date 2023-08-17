@@ -44,9 +44,10 @@ const Popular = () => {
             xs={4}
             key={index}>
             <PopularCard
+              id={data._id}
               films={data.films.length}
-              tvShows={data.tvShows.length}
-              image={data.imageUrl}
+              tvShows={data.tvShows}
+              picture={data.imageUrl}
               name={data.name}
             />
           </Grid>
